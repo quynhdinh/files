@@ -136,6 +136,12 @@ function move_to_windows_from_wsl {
 }
 alias mwin=move_to_windows_from_wsl
 
+function make_sh_file {
+	name=$1
+	echo "creating a bash file named $name"
+	bash ~/Documents/github/files/bin/create-script $1
+}
+alias makesh=make_sh_file
 alias kkp='cd ~/Downloads/kafka_2.13-3.4.0/bin && ./kafka-console-producer.sh --bootstrap-server kafka:9092 --topic'
 alias kkc='cd ~/Downloads/kafka_2.13-3.4.0/bin && ./kafka-console-consumer.sh --bootstrap-server kafka:9092 --topic'
 alias ktp='cd ~/Downloads/kafka_2.13-3.4.0/bin && ./kafka-topics.sh --list --bootstrap-server kafka:9092'

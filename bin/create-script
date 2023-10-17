@@ -11,4 +11,3 @@ set -euo pipefail
 
 EOM
 chmod +x $1
-vim $1
