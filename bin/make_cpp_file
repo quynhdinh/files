@@ -1,0 +1,33 @@
+#!/bin/bash
+
+set -e
+# put the following below file to /tmp/debug and make sure compile your .cpp code with -DLOCAL file
+# https://github.com/quynhdinh/cp/blob/main/debug.h
+time=$(date +%d.%m.%Y_%H:%M:%S)
+cat > $1 << EOM
+/**
+ *    created: $time
+**/
+#include <bits/stdc++.h>
+using namespace std;
+
+#ifdef LOCAL
+#include "/tmp/debug.h"
+#else
+#define debug(...) 42
+#endif
+
+#define int long long
+
+void test_case(){
+}
+int32_t main(){
+    int T; cin>>T;
+    while(T--){
+        test_case();
+    }
+    return 0;
+}
+
+EOM
+

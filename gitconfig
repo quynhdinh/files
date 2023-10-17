@@ -1,0 +1,100 @@
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[user]
+	name = quynhdv
+	email = quynhdv@vng.com.vn
+[core]
+	longpaths = true
+[cola]
+	spellcheck = false
+[alias]
+        # Commit all changes
+        ca = !git add -A && git commit -av
+
+        # Show the diff between the latest commit and the current state
+        d = !"git diff-index --quiet HEAD -- || clear; git --no-pager diff --patch-with-stat"
+
+	misc = !git add . && git commit -m 'some misc commit'
+	misc2 = !git add . && git commit -m 'some misc commit 2'
+
+	ol = !git log --oneline -n 15
+	p = push 
+	ps = push --set-upstream origin 
+	m = merge 
+	pf = push --force-with-lease
+	o = checkout
+	oa = !git checkout auto-build && git pull --rebase
+	om = !git checkout main && git pull --rebase
+	pr = pull --autostash --rebase
+	ma = !git checkout auto-build && git pull --rebase && git merge
+	st = !git status
+	rl = !git reflog
+	b  = !git branch
+	r  = !git reset --hard HEAD
+	last = !git reset --soft HEAD~1
+	ret = !git reset --hard HEAD~1
+	r1 = !git rebase -i HEAD~1
+	r2 = !git rebase -i HEAD~2
+	r3 = !git rebase -i HEAD~3
+	r4 = !git rebase -i HEAD~4
+	r5 = !git rebase -i HEAD~5
+	r6 = !git rebase -i HEAD~6
+
+	ra = !git fetch origin && git reset origin/auto-build --hard
+	rm = !git fetch origin && git reset origin/master --hard
+
+	aliases = "!git config --get-regexp '^alias\\.' | cut -c 7- | sed 's/ / = /'"
+	stashes = stash list
+	sp = stash pop 
+	quick = !git stash --message 'WIP - to be pop soon'
+
+	clast = !git diff HEAD~1 HEAD 
+	clast2 = !git diff HEAD~2 HEAD~1
+	clast3 = !git diff HEAD~3 HEAD~2
+
+	# subject to change
+	of = !git checkout KV && git pull --rebase
+	of2 = !git checkout ZA-7023 && git pull --rebase
+	of3 = !git checkout ZA-6947 && git pull --rebase
+	maf = !git checkout auto-build && git pull --rebase && git merge KV && git push
+	maf2 = !git checkout auto-build && git pull --rebase && git merge ZA-7023 && git push
+	maf3 = !git checkout auto-build && git pull --rebase && git merge ZA-6947 && git push
+
+	# List contributors with number of commit
+	contributors = !git shortlog --summary --numbered
+
+	# Interactive rebase with the given number of latest commits
+	reb = "!r() { git rebase -i HEAD~$1; }; r"
+
+        # Amend the currently staged files to the latest commit
+	amend = commit --amend --reuse-message=HEAD
+	
+	# See branch currently at
+	at = rev-parse --abbrev-ref HEAD
+
+	# Remove the old tag with this name and tag the latest commit with it.
+	retag = "!r() { git tag -d $1 && git push origin :refs/tags/$1 && git tag $1; }; r"
+	
+	# Credit an author on the latest commit.
+	credit = "!f() { git commit --amend --author \"$1 <$2>\" -C HEAD; }; f"
+
+	# Find branches containing commit
+	fb = "!f() { git branch -a --contains $1; }; f"
+
+	# Find tags containing commit
+	ft = "!f() { git describe --always --contains $1; }; f"
+
+	# Find commits by source code
+	fc = "!f() { git log --pretty=format:'%C(yellow)%h  %Cblue%ad  %Creset%s%Cgreen  [%cn] %Cred%d' --decorate --date=short -S$1; }; f"
+
+	# Find commits by commit message
+	fm = "!f() { git log --pretty=format:'%C(yellow)%h  %Cblue%ad  %Creset%s%Cgreen  [%cn] %Cred%d' --decorate --date=short --grep=$1; }; f"
+
+        # Find commits of a specified user
+        fu = "!f() { git log --author=$1; }; f"
+	
+        # Show the user's email and name for the current repository.
+	whoami = !git config user.email && git config user.name

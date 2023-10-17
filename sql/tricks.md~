@@ -1,0 +1,8 @@
+## Group by month
+
+Suppose you want to group by each month(column created), this trick allows you to do just that
+
+```select unix_timestamp(concat(substr(from_unixtime(created), 1, 7), '-01')) as g, count(*) from Members group by g order by g asc;```
+
+Group by day
+```select substr(from_unixtime(created), 1, 10) as g, sum(amount) from Transactions where pay123id != '' and type = 4 and status = 1 group by g order by g desc;```
