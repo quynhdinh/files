@@ -12,7 +12,7 @@ cat > $1 << EOM
 using namespace std;
 
 #ifdef LOCAL
-#include "/algo/debug.h"
+#include "/tmp/debug.h"
 #else
 #define debug(...) 42
 #endif

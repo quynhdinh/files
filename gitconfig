@@ -5,17 +5,17 @@
 	required = true
 [user]
 	name = quynhdv
-	email = quynhdv@vng.com.vn
+	email = quynhvdinh@gmail.com
 [core]
 	longpaths = true
 [cola]
 	spellcheck = false
 [alias]
-        # Commit all changes
-        ca = !git add -A && git commit -av
+    # Commit all changes
+    ca = !git add -A && git commit -av
 
-        # Show the diff between the latest commit and the current state
-        d = !"git diff-index --quiet HEAD -- || clear; git --no-pager diff --patch-with-stat"
+    # Show the diff between the latest commit and the current state
+    d = !"git diff-index --quiet HEAD -- || clear; git --no-pager diff --patch-with-stat"
 
 	misc = !git add . && git commit -m 'some misc commit'
 	misc2 = !git add . && git commit -m 'some misc commit 2'
@@ -36,12 +36,6 @@
 	r  = !git reset --hard HEAD
 	last = !git reset --soft HEAD~1
 	ret = !git reset --hard HEAD~1
-	r1 = !git rebase -i HEAD~1
-	r2 = !git rebase -i HEAD~2
-	r3 = !git rebase -i HEAD~3
-	r4 = !git rebase -i HEAD~4
-	r5 = !git rebase -i HEAD~5
-	r6 = !git rebase -i HEAD~6
 
 	ra = !git fetch origin && git reset origin/auto-build --hard
 	rm = !git fetch origin && git reset origin/master --hard
@@ -93,8 +87,8 @@
 	# Find commits by commit message
 	fm = "!f() { git log --pretty=format:'%C(yellow)%h  %Cblue%ad  %Creset%s%Cgreen  [%cn] %Cred%d' --decorate --date=short --grep=$1; }; f"
 
-        # Find commits of a specified user
-        fu = "!f() { git log --author=$1; }; f"
-	
-        # Show the user's email and name for the current repository.
+    # Find commits of a specified user
+    fu = "!f() { git log --author=$1; }; f"
+
+    # Show the user's email and name for the current repository.
 	whoami = !git config user.email && git config user.name
