@@ -1,4 +1,5 @@
 #!/bin/bash
+OS="LINUX"
 
 # Show where I'm copying
 alias cp="cp -v"
@@ -109,7 +110,12 @@ function compile_cpp_file {
     fi
     echo "Compiling $file_name"
     output_file="${file_name%.*}"
-    g++ -std=c++17 -Wshadow -Wall -o $output_file $file_name -g -fsanitize=address -fsanitize=undefined -D_GLIBCXX_DEBUG -DLOCAL
+    if [[ $OS = "LINUX" ]]
+    then
+        g++ -std=c++17 -Wshadow -Wall -o $output_file $file_name -g -fsanitize=address -fsanitize=undefined -D_GLIBCXX_DEBUG -DLOCAL
+    else
+        g++-13 -std=c++20 -Wshadow -Wall -o $output_file $file_name -DLOCAL
+    fi
     find . -name "in*" -print0 | while read -d $'\0' file
     do
         echo "The result for $file is "
@@ -117,7 +123,7 @@ function compile_cpp_file {
         echo "==="
     done
 }
-alias cpp=compile_cpp_file
+alias cpl=compile_cpp_file
 
 function make_cpp_file {
     file_name=$1
@@ -128,7 +134,7 @@ function make_cpp_file {
     echo $file_name
 	bash ~/Documents/github/files/bin/make_cpp_file $file_name
 }
-alias makecpp=make_cpp_file
+alias mc=make_cpp_file
 
 function move_to_windows_from_wsl {
     echo "$1"

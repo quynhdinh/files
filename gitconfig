@@ -26,19 +26,13 @@
 	m = merge 
 	pf = push --force-with-lease
 	o = checkout
-	oa = !git checkout auto-build && git pull --rebase
-	om = !git checkout main && git pull --rebase
 	pr = pull --autostash --rebase
-	ma = !git checkout auto-build && git pull --rebase && git merge
 	st = !git status
 	rl = !git reflog
 	b  = !git branch
 	r  = !git reset --hard HEAD
 	last = !git reset --soft HEAD~1
 	ret = !git reset --hard HEAD~1
-
-	ra = !git fetch origin && git reset origin/auto-build --hard
-	rm = !git fetch origin && git reset origin/master --hard
 
 	aliases = "!git config --get-regexp '^alias\\.' | cut -c 7- | sed 's/ / = /'"
 	stashes = stash list
@@ -49,21 +43,13 @@
 	clast2 = !git diff HEAD~2 HEAD~1
 	clast3 = !git diff HEAD~3 HEAD~2
 
-	# subject to change
-	of = !git checkout KV && git pull --rebase
-	of2 = !git checkout ZA-7023 && git pull --rebase
-	of3 = !git checkout ZA-6947 && git pull --rebase
-	maf = !git checkout auto-build && git pull --rebase && git merge KV && git push
-	maf2 = !git checkout auto-build && git pull --rebase && git merge ZA-7023 && git push
-	maf3 = !git checkout auto-build && git pull --rebase && git merge ZA-6947 && git push
-
 	# List contributors with number of commit
 	contributors = !git shortlog --summary --numbered
 
 	# Interactive rebase with the given number of latest commits
 	reb = "!r() { git rebase -i HEAD~$1; }; r"
 
-        # Amend the currently staged files to the latest commit
+    # Amend the currently staged files to the latest commit
 	amend = commit --amend --reuse-message=HEAD
 	
 	# See branch currently at
