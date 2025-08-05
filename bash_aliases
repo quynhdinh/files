@@ -138,7 +138,12 @@ alias mc=make_cpp_file
 
 function unzip_and_open {
     file_name=$1
-	bash ~/Documents/github/unzip-and-open/uao.sh $file_name
+    dest=$2
+    ide=$3
+    echo $file_name
+    echo $dest
+    echo $ide
+	~/Documents/github/unzip-and-open/uao.sh $file_name $dest $ide
 }
 alias uao=unzip_and_open
 
