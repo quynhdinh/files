@@ -1,5 +1,5 @@
 #!/bin/bash
-OS="LINUX"
+OS="MAC"
 
 # Show where I'm copying
 alias cp="cp -v"
@@ -79,7 +79,7 @@ alias reset=reset_hard_origin_branch
 function create_java_project {
 	artifact=$1
 	echo "creating a java project named $artifact"
-	bash ~/Documents/github/files/bin/mvn-java8 $1
+	bash ~/Documents/github/files/bin/mvn-java $1
 	cd $artifact
 }
 alias java_quick=create_java_project
@@ -135,6 +135,12 @@ function make_cpp_file {
 	bash ~/Documents/github/files/bin/make_cpp_file $file_name
 }
 alias mc=make_cpp_file
+
+function unzip_and_open {
+    file_name=$1
+	bash ~/Documents/github/unzip-and-open/uao.sh $file_name
+}
+alias uao=unzip_and_open
 
 function move_to_windows_from_wsl {
     echo "$1"
